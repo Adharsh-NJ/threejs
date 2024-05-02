@@ -1,0 +1,49 @@
+Three.js Fundamentals
+
+--structure of 3 js--
+
+Scene: it includes objects,lighting and angles etc.
+     Group:
+     mesh:
+     material:
+     Geomatry:
+     Texture:
+Renderer: this is generating an image with passing scene and camera
+Camera: how the user is watching .
+
+
+--Camera and renderloop--
+updateProjectionMatrix should be called when changing the camera parameters
+-perspective camera :
+feild of view(fov):how much should be visible in camera
+aspect ratio
+near 
+far
+-orthographic camera:
+
+
+-orbitControls:
+this allows as to control the objects inside and run animations within creating an orbit(rotation draging etc)
+-renderloop
+this updates the canvas realtime
+window.requestAnimationFrame : instead of using infinte loop or timeouts ,we can update the frames as the refresh rates of the screen
+
+
+what to do with stair case like edges?
+we can use antialias to be true in the webglRender to avoid it 
+we can set the pixelRatio to be window.devicePixelRatio max can be 2
+
+--The mesh--
+
+the postions is an vector 3 
+there is a new vector method to set the position 
+there is a set method to set all three together
+there is a property in basic mesh to show the wireframe of the object wireFrame:true
+
+group:
+group can consists of different meshs and the properties applied to group will be applied to everything inside
+
+rotations:
+the unit is mentioned in radiants .eighther we can convert it to degree by muliplying with Math.pi(180 deg) or we can use Three.MathUtils.degToRad(deg)
+
+animations:
