@@ -46,4 +46,21 @@ group can consists of different meshs and the properties applied to group will b
 rotations:
 the unit is mentioned in radiants .eighther we can convert it to degree by muliplying with Math.pi(180 deg) or we can use Three.MathUtils.degToRad(deg)
 
-animations:
+-- material--
+Non environment Reacting materials
+mesh basic 
+mesh matcap
+mesh depth
+
+environment Reacting materials(Graphical Accuracy)
+mesh lambert          |
+mesh phong            |      graphical accuracy increasing          
+mesh standard         |
+mesh physical         \/
+
+there is texture that we can wrap around materials 
+and uv map is to determine how it can be wrapped on to it
+we can wrap different parts with different textures
+there is roughness map and metalnessMaps in material
+ambient inclusion map(AO map) is used to add the shadows created by the object
+AO needs other uv map for to work

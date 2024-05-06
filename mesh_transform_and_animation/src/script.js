@@ -4,21 +4,31 @@ import {OrbitControls} from 'three/addons/controls/OrbitControls.js'
 const scene = new THREE.Scene()
 
 // add objects to the scene
-const cubeGeometry = new THREE.BoxGeometry(1,1,1)
-const cubeMaterial = new THREE.MeshBasicMaterial({color: "red",wireframe:true})
+const cubeGeometry = new THREE.SphereGeometry(1,10,10,56)
+const cubeMaterial = new THREE.MeshBasicMaterial({color: "red",wireframe:false})
+
+//creating custom geometry
+const vertices = new Float32Array([
+  0,0,0,
+  0,2,0,
+  2,0,0,
+])
+const bufferAttribute = new THREE.BufferAttribute(vertices,3)
+const geometry = new THREE.BufferGeometry()
+geometry.setAttribute('position',bufferAttribute);
 
 const cubeMesh = new THREE.Mesh(
   cubeGeometry,
   cubeMaterial
 )
-const cubeMesh2 = new THREE.Mesh(
-  cubeGeometry,
-  cubeMaterial
-)
-const cubeMesh3 = new THREE.Mesh(
-  cubeGeometry,
-  cubeMaterial
-)
+// const cubeMesh2 = new THREE.Mesh(
+//   cubeGeometry,
+//   cubeMaterial
+// )
+// const cubeMesh3 = new THREE.Mesh(
+//   cubeGeometry,
+//   cubeMaterial
+// )
 // cubeMesh.rotation.reorder('XYZ') //the order the rotations
 // cubeMesh.rotation.x = THREE.MathUtils.degToRad(25)
 // cubeMesh.rotation.z = THREE.MathUtils.degToRad(25)
@@ -29,7 +39,7 @@ const group = new THREE.Group();
 group.add(cubeMesh)
 // group.add(cubeMesh2)
 // group.add(cubeMesh3)
-scene.add(group)
+scene.add(cubeMesh)
 group.scale.y =2 // we can use the group to apply the properties to all the objects
 group.scale.setScalar(2) // we can use the group to apply the properties to all the objects
 const camera = new THREE.PerspectiveCamera(
@@ -74,7 +84,9 @@ const renderloop=()=>{ //update the canvas according to refresh rate
   const currentTime = clock.getElapsedTime()
   const delta = currentTime - previousTime; //this is to make it smooth  animations
   previousTime = currentTime;
-  cubeMesh.rotation.y += THREE.MathUtils.degToRad(1) * delta * 10 ; 
+  // cubeMesh.rotation.y += THREE.MathUtils.degToRad(1) * delta * 10 ; 
+  //we can make use of sine wave which changes to 1 to -1
+  // cubeMesh.scale.x = (Math.sin(currentTime) * 0.5 +2)
   controls.update()
     renderer.render(scene, camera)
     window.requestAnimationFrame(renderloop)
